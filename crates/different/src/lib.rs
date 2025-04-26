@@ -192,6 +192,10 @@ pub struct DiffSettings {
 }
 
 impl DiffSettings {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
     // TODO full builder stuff
     pub fn names(mut self, left: String, right: String) -> Self {
         self.left_name = Some(left);
