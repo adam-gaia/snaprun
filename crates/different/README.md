@@ -1,3 +1,2 @@
-# checklist
-foo bar
-asdfasdfasdf
+# differ
+Pretty line-based diff printouts (bin and library)
