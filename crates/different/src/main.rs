@@ -1,6 +1,6 @@
 use anyhow::Result;
 use clap::Parser;
-use differ::{DiffSettings, line_diff};
+use different::{DiffSettings, line_diff};
 use log::debug;
 use std::fs;
 use std::path::PathBuf;
