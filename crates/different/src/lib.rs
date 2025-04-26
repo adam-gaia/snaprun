@@ -191,6 +191,15 @@ pub struct DiffSettings {
     no_color: bool,
 }
 
+impl DiffSettings {
+    // TODO full builder stuff
+    pub fn names(mut self, left: String, right: String) -> Self {
+        self.left_name = Some(left);
+        self.right_name = Some(right);
+        self
+    }
+}
+
 impl Default for DiffSettings {
     fn default() -> Self {
         Self {
