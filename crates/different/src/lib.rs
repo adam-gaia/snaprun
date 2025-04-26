@@ -56,7 +56,13 @@ enum ColorSide {
     Both,
 }
 
-fn print_diff<T: Display>(diff: Vec<diff::Result<T>>, settings: &DiffSettings) {
+/// Compare 'expected' to 'actual', where 'actual' is (well probably) a modified version of 'expected'
+/// Returns true if the inputs are the same, false if different.
+/// If 'print' is true and there are differences, prints the diff
+pub fn line_diff(left: &str, right: &str, settings: &DiffSettings, print: bool) -> bool {
+    let mut same = true;
+    let diff = diff::lines(left, right);
+
     let left_color = if let Some(color) = settings.left_color {
         color
     } else {
@@ -69,38 +75,41 @@ fn print_diff<T: Display>(diff: Vec<diff::Result<T>>, settings: &DiffSettings) {
         DEFAULT_RIGHT_COLOR
     };
 
-    // TODO: force color and no color should be mutually exclusive
-    if settings.force_color {
-        colored::control::set_override(true);
-    }
-    if settings.no_color {
-        colored::control::set_override(false);
-    }
-
     let indent = " ".repeat(settings.indent_spaces);
 
-    let left_header = header(
-        Side::Left,
-        settings.left_name.as_ref(),
-        settings.left_marker,
-        settings.marker_count,
-    )
-    .color(left_color);
-    let right_header = header(
-        Side::Right,
-        settings.right_name.as_ref(),
-        settings.right_marker,
-        settings.marker_count,
-    )
-    .color(right_color);
-    println!("{left_header}");
-    println!("{right_header}");
+    if print {
+        // TODO: force color and no color should be mutually exclusive
+        if settings.force_color {
+            colored::control::set_override(true);
+        }
+        if settings.no_color {
+            colored::control::set_override(false);
+        }
+
+        let left_header = header(
+            Side::Left,
+            settings.left_name.as_ref(),
+            settings.left_marker,
+            settings.marker_count,
+        )
+        .color(left_color);
+        let right_header = header(
+            Side::Right,
+            settings.right_name.as_ref(),
+            settings.right_marker,
+            settings.marker_count,
+        )
+        .color(right_color);
+        println!("{left_header}");
+        println!("{right_header}");
+    }
 
     let mut line_num_a = 0;
     let mut line_num_b = 0;
     for line in diff {
         let (sep, content, line_num_a_display, line_num_b_display, color) = match line {
             diff::Result::Left(l) => {
+                same = false;
                 line_num_a += 1;
                 ('-', l, Some(line_num_a), None, ColorSide::Left)
             }
@@ -110,34 +119,25 @@ fn print_diff<T: Display>(diff: Vec<diff::Result<T>>, settings: &DiffSettings) {
                 ('|', l, Some(line_num_a), Some(line_num_b), ColorSide::Both)
             }
             diff::Result::Right(r) => {
+                same = false;
                 line_num_b += 1;
                 ('+', r, None, Some(line_num_b), ColorSide::Right)
             }
         };
 
-        let line_num_a_display = display_str(line_num_a_display);
-        let line_num_b_display = display_str(line_num_b_display);
+        if print {
+            let line_num_a_display = display_str(line_num_a_display);
+            let line_num_b_display = display_str(line_num_b_display);
 
-        let line =
-            format!("{indent}{line_num_a_display}{indent}{line_num_b_display} {sep} {content}");
-        let line = match color {
-            ColorSide::Left => line.color(left_color),
-            ColorSide::Right => line.color(right_color),
-            ColorSide::Both => line.dimmed(),
-        };
-        println!("{line}");
-    }
-}
-
-/// Compare 'expected' to 'actual', where 'actual' is (well probably) a modified version of 'expected'
-/// Returns true if the inputs are the same, false if different.
-/// If 'print' is true and there are differences, prints the diff
-pub fn line_diff(left: &str, right: &str, settings: &DiffSettings, print: bool) -> bool {
-    let diff = diff::lines(left, right);
-    let same = diff.len() == 0;
-
-    if !same && print {
-        print_diff(diff, settings)
+            let line =
+                format!("{indent}{line_num_a_display}{indent}{line_num_b_display} {sep} {content}");
+            let line = match color {
+                ColorSide::Left => line.color(left_color),
+                ColorSide::Right => line.color(right_color),
+                ColorSide::Both => line.dimmed(),
+            };
+            println!("{line}");
+        }
     }
 
     same
