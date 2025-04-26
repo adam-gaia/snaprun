@@ -1,0 +1,24 @@
+[package]
+name = "differ"
+description = "Pretty line-based diff printouts (bin and library)"
+version = "0.1.0"
+edition = "2024"
+license = "MIT OR Apache-2.0"
+homepage = "TODO"
+repository = "TODO"
+
+[[bin]]
+name = "diff"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1.0.98"
+clap = { version = "4.5.37", features = ["derive"]}
+colored = "3.0.0"
+diff = "0.1.13"
+env_logger = "0.11.8"
+log = "0.4.27"
+
+[dev-dependencies]
+trycmd = "0.15.9"
+
