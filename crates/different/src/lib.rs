@@ -69,8 +69,12 @@ fn print_diff<T: Display>(diff: Vec<diff::Result<T>>, settings: &DiffSettings) {
         DEFAULT_RIGHT_COLOR
     };
 
+    // TODO: force color and no color should be mutually exclusive
     if settings.force_color {
         colored::control::set_override(true);
+    }
+    if settings.no_color {
+        colored::control::set_override(false);
     }
 
     let indent = " ".repeat(settings.indent_spaces);
