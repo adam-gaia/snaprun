@@ -13,9 +13,13 @@ repository:
   allow_merge_commit: true
   allow_squash_merge: true
   allow_rebase_merge: true
+  allow_auto_merge: true
   delete_branch_on_merge: true
   enable_vulnerability_alerts: true
   enable_automated_security_fixes: true
+  squash_merge_commit_title: "PR_TITLE"
+  squash_merge_commit_message: "PR_BODY"
+  merge_commit_message: "PR_BODY"
 branches:
   - name: main
     protection:
@@ -28,4 +32,24 @@ branches:
         require_code_owner_reviews: true
         dismiss_stale_reviews: false
       required_linear_history: true
-      restrictions: null
+      restrictions:
+        apps: []
+        users: []
+        teams: []
+labels:
+  # Type
+  - name: bug
+    color: '#b60205'
+    description: "Not as expected"
+  - name: enhancement
+    color: '#1d76db'
+    description: "Improve the expected"
+  # Flavor
+  - name: question
+    color: "#cc317c"
+    description: "Uncertainty is involved"
+  - name: breaking-change
+    color: "#e99695"
+  - name: good first issue
+    color: '#c2e0c6'
+    description: "Help wanted!"
