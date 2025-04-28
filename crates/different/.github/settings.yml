@@ -36,6 +36,21 @@ branches:
         apps: []
         users: []
         teams: []
+rulesets:
+  - name: Enforce checks on latest commit
+    target: branch
+    enforcement: active
+    conditions:
+      ref_name:
+        include:
+          - "~DEFAULT_BRANCH"
+        exclude: []
+    rules:
+      - type: required_status_checks
+        parameters:
+          strict_required_status_checks_policy: true
+          required_status_checks:
+            - context: []
 labels:
   # Type
   - name: bug
