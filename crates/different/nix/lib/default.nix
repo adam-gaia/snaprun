@@ -17,14 +17,18 @@
     inherit (pkgs) lib;
 
     craneLib = inputs.crane.mkLib pkgs;
-    txtFilter = path: _type: builtins.match ".*txt" path != null;
-    markdownFilter = path: _type: builtins.match ".*md" path != null;
-    sourceWithReadme = path: type: (markdownFilter path type) || (txtFilter path type) || (craneLib.filterCargoSources path type);
-    # nix build needs access to the READAME and test/*.txt files for trycmd tests
-    src = lib.cleanSourceWith {
-      src = ../../.;
-      filter = sourceWithReadme;
-      name = "source";
+
+    unfilteredRoot = ../../.;
+    src = lib.fileset.toSource {
+      root = unfilteredRoot;
+      fileset = lib.fileset.unions [
+        # Default files from crane (Rust and cargo files)
+        (craneLib.fileset.commonCargoSources unfilteredRoot)
+        # Also keep any markdown files (for trycmd)
+        (lib.fileset.fileFilter (file: file.hasExt "md") unfilteredRoot)
+        # Test files (for trycmd)
+        (lib.fileset.maybeMissing (unfilteredRoot + "/tests"))
+      ];
     };
 
     # Common arguments can be set here to avoid repeating them later

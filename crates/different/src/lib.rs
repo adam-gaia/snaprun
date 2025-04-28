@@ -1,5 +1,5 @@
 use colored::{Color, Colorize};
-use std::{fmt::Display, str::FromStr};
+use std::fmt::Display;
 
 const DEFAULT_LEFT_MARKER: char = '-';
 const DEFAULT_RIGHT_MARKER: char = '+';
@@ -9,7 +9,7 @@ const DEFAULT_LEFT_COLOR: Color = Color::Green;
 const DEFAULT_RIGHT_COLOR: Color = Color::Red;
 use anyhow::Result;
 
-fn parse_color(s: &str) -> Result<Color> {
+fn parse_color(_s: &str) -> Result<Color> {
     todo!();
 }
 
@@ -80,7 +80,7 @@ pub enum Diff<'a, T> {
     },
 }
 
-impl<'a, T> Display for Diff<'a, T>
+impl<T> Display for Diff<'_, T>
 where
     T: Display,
 {
@@ -173,7 +173,6 @@ pub fn line_diff<'a>(
     right: &'a str,
     settings: &'a DiffSettings,
 ) -> Diff<'a, &'a str> {
-    let mut same = true;
     let diff = diff::lines(left, right);
     let mut same = true;
 

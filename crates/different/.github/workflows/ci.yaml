@@ -31,3 +31,5 @@ jobs:
           arguments: .#devShells.x86_64-linux.ci
       - name: CI
         run: flake-ci
+        env:
+          CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}

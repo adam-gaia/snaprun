@@ -1,10 +1,8 @@
 use anyhow::Result;
 use clap::Parser;
-use different::{line_diff, DiffSettings};
+use different::{DiffSettings, line_diff};
 use log::debug;
 use pathdiff::diff_paths;
-use std::fs::File;
-use std::io::{self, BufRead, BufReader};
 use std::path::Path;
 use std::path::PathBuf;
 use std::{env, fs};
@@ -22,7 +20,7 @@ struct Cli {
 }
 
 fn display_name(path: &Path, cwd: &Path) -> String {
-    diff_paths(&path, &cwd)
+    diff_paths(path, cwd)
         .map(|p| format!("./{}", p.display()))
         .unwrap_or(path.display().to_string())
 }
@@ -41,8 +39,8 @@ fn main() -> Result<()> {
     let cwd = env::current_dir()?;
     let args = Cli::parse();
 
-    let left = PathBuf::from(args.left);
-    let right = PathBuf::from(args.right);
+    let left = args.left;
+    let right = args.right;
 
     let (left_name, left_contents, left_num_lines) = process_file(&left, &cwd)?;
     let (right_name, right_contents, right_num_lines) = process_file(&right, &cwd)?;
