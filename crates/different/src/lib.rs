@@ -9,7 +9,7 @@ const DEFAULT_LEFT_COLOR: Color = Color::Green;
 const DEFAULT_RIGHT_COLOR: Color = Color::Red;
 use anyhow::Result;
 
-fn parse_color(s: &str) -> Result<Color> {
+fn parse_color(_s: &str) -> Result<Color> {
     todo!();
 }
 
@@ -173,7 +173,6 @@ pub fn line_diff<'a>(
     right: &'a str,
     settings: &'a DiffSettings,
 ) -> Diff<'a, &'a str> {
-    let same = true;
     let diff = diff::lines(left, right);
     let mut same = true;
 

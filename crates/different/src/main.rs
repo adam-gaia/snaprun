@@ -3,7 +3,6 @@ use clap::Parser;
 use different::{DiffSettings, line_diff};
 use log::debug;
 use pathdiff::diff_paths;
-use std::io::BufRead;
 use std::path::Path;
 use std::path::PathBuf;
 use std::{env, fs};
