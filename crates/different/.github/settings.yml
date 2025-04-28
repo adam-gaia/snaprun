@@ -25,7 +25,8 @@ branches:
     protection:
       required_status_checks:
         strict: true
-        contexts: []
+        contexts:
+          - flake-ci
       enforce_admins: true
       required_pull_request_reviews:
         required_approving_review_count: 1
@@ -50,7 +51,7 @@ rulesets:
         parameters:
           strict_required_status_checks_policy: true
           required_status_checks:
-            - context: []
+            - context: flake-ci
 labels:
   # Type
   - name: bug
@@ -65,6 +66,7 @@ labels:
     description: "Uncertainty is involved"
   - name: breaking-change
     color: "#e99695"
+    description: "Introduces backward-incompatible changes."
   - name: good first issue
     color: '#c2e0c6'
     description: "Help wanted!"
