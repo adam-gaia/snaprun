@@ -94,11 +94,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1743008896,
-        "narHash": "sha256-mU0WYwrgN8Sus4ktBsSzkvs0++vAKrhNE0A0vWo8AzY=",
+        "lastModified": 1744122991,
+        "narHash": "sha256-Mk7dW932hmuvtSzyJJgjqF8/7YgDgV0nc3Ju4QtIzXs=",
         "owner": "numtide",
         "repo": "blueprint",
-        "rev": "7ae2142c8b5a47bed6d403fdd5f5a1215961e10c",
+        "rev": "ce2b3370b6915bc457b669e53d04f0231b66b60f",
         "type": "github"
       },
       "original": {
@@ -327,11 +327,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1743915607,
-        "narHash": "sha256-x7fdlEW32ipQl/SBeiFUN2AJ3fNg0Ja7fpN8ClQ1VQc=",
+        "lastModified": 1744323379,
+        "narHash": "sha256-9016iMx0fYZ5VNcgeHsdREqAZYpuBFdIb/eC+IrbKes=",
         "owner": "adam-gaia",
         "repo": "flake-ci",
-        "rev": "ed63e019e4ed5f8925a64c1d247d94c026b35364",
+        "rev": "bef8b488d52ce24f953851349474342426ceeaee",
         "type": "github"
       },
       "original": {
