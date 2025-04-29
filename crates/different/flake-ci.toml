@@ -13,5 +13,6 @@ extra-prereqs = [
   "checks.*.cargo-audit",
   "checks.*.cargo-deny",
   "checks.*.cargo-nextest",
+  "checks.*.cargo-diet",
   "checks.*.fake",
 ]
