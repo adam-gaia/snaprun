@@ -11,7 +11,7 @@
   # Run cargo diet
   cargo-diet = craneLib.mkCargoDerivation (commonArgs
     // {
-      buildPhaseCargoCommand = "cargo diet";
+      buildPhaseCargoCommand = "cargo diet --dry-run";
 
       inherit cargoArtifacts;
 
