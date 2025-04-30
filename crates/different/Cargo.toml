@@ -6,6 +6,7 @@ edition = "2024"
 license = "MIT OR Apache-2.0"
 homepage = "https://github.com/adam-gaia/differ"
 repository = "https://github.com/adam-gaia/differ"
+include = ["src/**/*", "LICENSE-*", "README.md"]
 
 [[bin]]
 name = "diff"

@@ -38,6 +38,7 @@ in
         oranda
         vale
         cargo-release
+        cargo-diet
       ]
       # Include the extra packages we use to build our crate
       ++ commonArgs.buildInputs

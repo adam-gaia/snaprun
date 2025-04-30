@@ -21,15 +21,13 @@ jobs:
         uses: cachix/install-nix-action@v25
         with:
           nix_path: nixpkgs=channel:nixos-unstable
-      #- uses: cachix/cachix-action@v16
-      #  with:
-      #    name: agaia
-      #    authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - uses: cachix/cachix-action@v16
+        with:
+          name: agaia
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
       - name: Use nix devshell
         uses: nicknovitski/nix-develop@v1
         with:
           arguments: .#devShells.x86_64-linux.ci
-      - name: CI
-        run: flake-ci
-        env:
-          CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
+      - name: flake-ci
+        run: flake-ci --no-publish
