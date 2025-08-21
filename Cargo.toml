@@ -1,11 +1,11 @@
 [package]
 name = "snaprun"
-description = "TODO"
+description = "Snapshot testing for any cli program"
 version = "0.1.0"
 edition = "2024"
 license = "MIT OR Apache-2.0"
-homepage = "TODO"
-repository = "TODO"
+homepage = "https://github.com/adam-gaia/snaprun"
+repository = "https://github.com/adam-gaia/snaprun"
 include = ["src/**/*", "LICENSE-*", "README.md"]
 authors = ["Adam Gaia <git@agaia.dev"]
 
