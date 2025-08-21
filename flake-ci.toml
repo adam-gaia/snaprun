@@ -1,0 +1,18 @@
+[cachix]
+cache-name = "agaia"
+publish = true
+
+[build]
+artifacts = ["packages.*.!formatter"]
+systems = ["x86_64-linux", "x86_64-darwin"]
+
+[[output]]
+name = "packages.*.default"
+extra-prereqs = [
+  "checks.*.cargo-clippy",
+  "checks.*.cargo-audit",
+  "checks.*.cargo-deny",
+  "checks.*.cargo-nextest",
+  "checks.*.cargo-diet",
+  "checks.*.fake",
+]
