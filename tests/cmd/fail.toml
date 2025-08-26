@@ -1,0 +1,3 @@
+bin.name = "snaprun"
+args = ["./snapshots"]
+# Output will need some fixing after 'different' crate gets some bug fixes
