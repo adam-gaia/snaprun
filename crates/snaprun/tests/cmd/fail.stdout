@@ -1,5 +1,5 @@
 [FAIL] hello-world
-    exit code mismatch: expected 1, got 0
+  exit code mismatch: expected 1, got 0
 stdout mismatch:
 ---- left:  expected
 ++++ right: got

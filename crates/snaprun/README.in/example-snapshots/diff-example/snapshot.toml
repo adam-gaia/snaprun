@@ -1,0 +1,3 @@
+command = "hello-world"
+stdout = "foo bar baz"
+stderr = ""

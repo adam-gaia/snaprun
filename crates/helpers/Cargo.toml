@@ -1,0 +1,15 @@
+[package]
+name = "helpers"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[[bin]]
+name = "hello-world"
+path = "src/hello-world.rs"
+
+[[bin]]
+name = "goodbye-world"
+path = "src/goodbye-world.rs"
+
+[dependencies]
