@@ -1,0 +1,72 @@
+repository:
+  name: different
+  description: "Pretty line-based diff printouts (bin and library)"
+  homepage: "https://github.com/adam-gaia/different"
+  topics:
+    - TODO
+  private: false
+  has_issues: true
+  has_projects: false
+  has_wiki: false
+  has_downloads: true
+  default_branch: main
+  allow_merge_commit: true
+  allow_squash_merge: true
+  allow_rebase_merge: true
+  allow_auto_merge: true
+  delete_branch_on_merge: true
+  enable_vulnerability_alerts: true
+  enable_automated_security_fixes: true
+  squash_merge_commit_title: "PR_TITLE"
+  squash_merge_commit_message: "PR_BODY"
+  merge_commit_message: "PR_BODY"
+branches:
+  - name: main
+    protection:
+      required_status_checks:
+        strict: true
+        contexts:
+          - flake-ci
+      enforce_admins: true
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+        require_code_owner_reviews: true
+        dismiss_stale_reviews: true
+      required_linear_history: true
+      restrictions:
+        apps: []
+        users: []
+        teams: []
+rulesets:
+  - name: Enforce checks on latest commit
+    target: branch
+    enforcement: active
+    conditions:
+      ref_name:
+        include:
+          - "~DEFAULT_BRANCH"
+        exclude: []
+    rules:
+      - type: required_status_checks
+        parameters:
+          strict_required_status_checks_policy: true
+          required_status_checks:
+            - context: flake-ci
+labels:
+  # Type
+  - name: bug
+    color: '#b60205'
+    description: "Not as expected"
+  - name: enhancement
+    color: '#1d76db'
+    description: "Improve the expected"
+  # Flavor
+  - name: question
+    color: "#cc317c"
+    description: "Uncertainty is involved"
+  - name: breaking-change
+    color: "#e99695"
+    description: "Introduces backward-incompatible changes."
+  - name: good first issue
+    color: '#c2e0c6'
+    description: "Help wanted!"

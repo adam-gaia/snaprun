@@ -1,0 +1,34 @@
+name: CI
+permissions:
+  contents: read
+on:
+  pull_request:
+  push:
+    branches:
+      - "main"
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+jobs:
+  flake-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install Nix
+        uses: cachix/install-nix-action@v25
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+      - name: Set up cachix
+        uses: cachix/cachix-action@v16
+        with:
+          name: agaia
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - name: Use nix devshell
+        uses: nicknovitski/nix-develop@v1
+        with:
+          arguments: .#devShells.x86_64-linux.ci
+      - name: flake-ci
+        run: flake-ci --no-publish

@@ -1,0 +1,6 @@
+# Protect settings file
+# https://github.com/repository-settings/app?tab=readme-ov-file#security-implications
+/.github/settings.yml @adam-gaia
+
+# Protect GitHub Actions
+/.github/workflows/ @adam-gaia
