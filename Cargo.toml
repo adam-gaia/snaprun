@@ -1,22 +1,3 @@
-[package]
-name = "snaprun"
-description = "TODO"
-version = "0.1.0"
-edition = "2024"
-license = "MIT OR Apache-2.0"
-homepage = "TODO"
-repository = "TODO"
-include = ["src/**/*", "LICENSE-*", "README.md"]
-authors = ["Adam Gaia <git@agaia.dev"]
-
-[dependencies]
-anyhow = "1.0.98"
-clap = { version = "4.5.45", features = ["derive"] }
-env_logger = "0.11.8"
-log = "0.4.27"
-serde = { version = "1.0.219", features = ["derive"] }
-snapbox = { version = "0.6.21", features = ["cmd"] }
-toml = "0.9.5"
-which = "8.0.0"
-
-
+[workspace]
+members = ["crates/*"]
+resolver = "3"

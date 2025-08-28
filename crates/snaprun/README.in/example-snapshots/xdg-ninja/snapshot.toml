@@ -1,0 +1,4 @@
+name = "xdg-ninja"
+command = "xdg-ninja"
+code = 8
+timeout_ms = 5000

@@ -1,0 +1,135 @@
+
+[1m[3mStarting to check your [36m$HOME[0m.
+
+[[1m[33mbash[0m]: [1m[3m/home/agaia/.bash_profile[0m
+
+  Currently unsupported.                                                      
+                                                                              
+  *Relevant issue:* https://savannah.gnu.org/support/?108134                  
+
+[[1m[33mbash[0m]: [1m[3m/home/agaia/.bashrc[0m
+
+  Currently unsupported.                                                      
+                                                                              
+  *Relevant issue:* https://savannah.gnu.org/support/?108134                  
+
+[[1m[33mFirefox[0m]: [1m[3m/home/agaia/.mozilla[0m
+
+  Currently unsupported.                                                      
+                                                                              
+  *Relevant issue:* https://bugzilla.mozilla.org/show_bug.cgi?id=259356       
+
+[[1m[31mgnupg[0m]: [1m[3m/home/agaia/.gnupg[0m
+
+  Export the following environment variables:                                 
+                                                                              
+    export GNUPGHOME="$XDG_DATA_HOME"/gnupg                                   
+                                                                              
+  *Note: from the archwiki:*                                                  
+                                                                              
+  | If you use non-default GnuPG Home directory, you will need to edit all    
+  | socket files to use the values of gpgconf --list-dirs.                    
+  | If you set your SSH_AUTH_SOCK manually, keep in mind that your socket     
+  | location may be different if you are using a custom GNUPGHOME             
+
+[[1m[31mgtk-2[0m]: [1m[3m/home/agaia/.gtkrc-2.0[0m
+
+  Export the following environment variables:                                 
+                                                                              
+    export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc                     
+
+[[1m[33mnix[0m]: [1m[3m/home/agaia/.nix-profile[0m
+
+  New nix command line interface supports XDG Base Directory but Old Commands 
+  will still create these directories.                                        
+                                                                              
+  To use the XDG spec with the old command line, add to /etc/nix/nix.conf:    
+                                                                              
+  use-xdg-base-directories = true                                             
+                                                                              
+  You also have to manually move the the file to **XDG_****STATE_****HOME**:  
+                                                                              
+  mv "$HOME/.nix-profile" "$XDG_STATE_HOME/nix/profile"                       
+                                                                              
+  *See the Manual*: https://nixos.org/manual/nix/stable/command-ref/conf-     
+  file#conf-use-xdg-base-directories                                          
+
+[[1m[33mnss[0m]: [1m[3m/home/agaia/.pki[0m
+
+  **Disclaimer: XDG is supported, but directory may be created again by some  
+  programs.**                                                                 
+                                                                              
+  XDG is supported out-of-the-box, so we can simply move directory to         
+  *"$XDG_**DATA_**HOME"/pki*.                                                 
+                                                                              
+  *Note: some apps (chromium, for example) hardcode path to **"$HOME"/.pki**, 
+  so directory may appear again, see*                                         
+  https://bugzilla.mozilla.org/show_bug.cgi?id=818686#c11                     
+  https://bugzilla.mozilla.org/show_bug.cgi?id=818686#c11*.*                  
+
+[[1m[33mopenssh[0m]: [1m[3m/home/agaia/.ssh[0m
+
+  Assumed to be present by many ssh daemons and clients such as **DropBear**  
+  and **OpenSSH**.                                                            
+
+[[1m[31mprofile[0m]: [1m[3m/home/agaia/.profile[0m
+
+  There are shells and window managers that don't need this file and won't    
+  create it, depending on your config, this file might be deleted or moved.   
+                                                                              
+  If you do not know, please do not move this file as it could lead to errors.
+
+[[1m[31mthemes[0m]: [1m[3m/home/agaia/.themes[0m
+
+  This is probably a custom directory on your system.                         
+                                                                              
+  You can move the file to *$XDG_**DATA_**HOME/themes*.                       
+
+[[1m[33mthunderbird[0m]: [1m[3m/home/agaia/.thunderbird[0m
+
+  Currently unsupported.                                                      
+                                                                              
+  *Relevant issue:* https://bugzilla.mozilla.org/show_bug.cgi?id=735285       
+
+[[1m[31mwget[0m]: [1m[3m/home/agaia/.wget-hsts[0m
+
+  Alias wget to use a custom hsts cache file location:                        
+                                                                              
+    alias wget="wget --hsts-file=$XDG_DATA_HOME/wget-hsts"                    
+
+[[1m[31mxorg-xrdb[0m]: [1m[3m/home/agaia/.Xresources[0m
+
+  xrdb loads these resources, wherever you call xrdb, add this flag:          
+                                                                              
+    xrdb -load "$XDG_CONFIG_HOME/X11/xresources"                              
+                                                                              
+  *Note: It will probably be called by your Xsession file.*                   
+
+[[1m[33mxsane[0m]: [1m[3m/home/agaia/.sane[0m
+
+  Currently unsupported.                                                      
+                                                                              
+  *Relevant issue:* https://gitlab.com/sane-project/frontend/xsane/-/issues/55
+
+[[1m[31mzsh[0m]: [1m[3m/home/agaia/.zsh_history[0m
+
+  Set this in your zshrc:                                                     
+                                                                              
+    export HISTFILE="$XDG_STATE_HOME"/zsh/history                             
+                                                                              
+  You must manually create the *$XDG_**STATE_**HOME/zsh* directory if it      
+  doesn't exist yet.                                                          
+
+[[1m[31mzsh[0m]: [1m[3m/home/agaia/.zshenv[0m
+
+  Move the file to *"$XDG_**CONFIG_**HOME"/zsh/.zshenv* and export the        
+  following environment variable:                                             
+                                                                              
+    export ZDOTDIR="$XDG_CONFIG_HOME"/zsh                                     
+                                                                              
+  You can do this in */etc/zshenv* (Or */etc/zsh/zshenv*, on some distros).   
+
+[1m[3mDone checking your [36m$HOME.[0m
+
+[3mIf you have files in your [36m$HOME[0m[3m that shouldn't be there, but weren't recognised by xdg-ninja, please consider creating a configuration file for it and opening a pull request on github.[0m
+

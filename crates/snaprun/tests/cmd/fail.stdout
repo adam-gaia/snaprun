@@ -1,0 +1,16 @@
+[FAIL] hello-world
+  exit code mismatch: expected 1, got 0
+stdout mismatch:
+---- left:  expected
+++++ right: got
+   1     - Goodbye, World!
+       1 + Hello, World!
+   2   2 | 
+
+stderr mismatch:
+---- left:  expected
+++++ right: got
+   1     - foo bar
+   2     - 
+
+

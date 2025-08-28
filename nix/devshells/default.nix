@@ -51,6 +51,9 @@ in
     shellHook = ''
       export PRJ_ROOT="$(git rev-parse --show-toplevel)"
 
+      # Add compiled rust bins to the path so the trycmd tests can access them
+      export PATH="''${PRJ_ROOT}/target/debug:''${PATH}"
+
       # Create .pre-commit-config.yaml
       ${pre-commit-check.shellHook}
     '';

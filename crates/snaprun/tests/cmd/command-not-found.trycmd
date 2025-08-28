@@ -1,0 +1,5 @@
+```console
+$ snap-run ./snapshots
+[FAIL]
+    command 'hello-world' not found
+```
