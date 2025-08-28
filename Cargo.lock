@@ -188,8 +188,6 @@ checksum = "56254986775e3233ffa9c4d7d3faaf6d36a2c09d30b20687e9f88bc8bafc16c8"
 [[package]]
 name = "different"
 version = "0.3.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c4f53f398545b52ea45931b8a2d4ee151b177c4b44c59d2051b4cd23b2ea4aca"
 dependencies = [
  "anyhow",
  "clap",
@@ -198,6 +196,7 @@ dependencies = [
  "env_logger",
  "log",
  "pathdiff",
+ "trycmd",
 ]
 
 [[package]]
